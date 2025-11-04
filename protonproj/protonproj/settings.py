@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-w$8s03yi23%1gr6mtd)_q+e5b$xs)e7ji1_*ea_5lq-j4m^h&_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dev.maheshiv.me']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,19 @@ TEMPLATES = [
         },
     },
 ]
+
+ASGI_APPLICATION = "protonproj.asgi.application"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+
 
 WSGI_APPLICATION = 'protonproj.wsgi.application'
 
